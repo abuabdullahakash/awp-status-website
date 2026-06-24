@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   Layers,
   ArrowRight,
@@ -40,7 +40,7 @@ import {
 } from "lucide-react";
 
 // Framer Motion Animation Variants
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -51,7 +51,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 35 },
   visible: {
     opacity: 1,
@@ -63,7 +63,7 @@ const itemVariants = {
   }
 };
 
-const fadeScaleVariants = {
+const fadeScaleVariants: Variants = {
   hidden: { opacity: 0, scale: 0.95, y: 45 },
   visible: {
     opacity: 1,
