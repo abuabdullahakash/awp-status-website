@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import Link from "next/link";
+import { featuresData } from "../data/features";
 import {
   Layers,
   ArrowRight,
@@ -36,8 +38,18 @@ import {
   Terminal,
   Activity,
   Play,
-  Share2
+  Share2,
+  Network,
+  TrendingUp,
+  CalendarClock,
+  Clock,
+  BookOpen,
+  FileX
 } from "lucide-react";
+
+const iconMap: Record<string, any> = {
+  Network, TrendingUp, CalendarClock, Clock, BookOpen, FileX
+};
 
 // Framer Motion Animation Variants
 const containerVariants: Variants = {
@@ -142,9 +154,9 @@ export default function Home() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#040406] text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500 selection:text-black">
+    <div className="relative min-h-screen bg-transparent text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500 selection:text-black">
       {/* Deep Space Background Mesh Gradient */}
-      <div className="absolute inset-0 -z-10 bg-[#040406] overflow-hidden">
+      <div className="absolute inset-0 -z-10 bg-transparent overflow-hidden">
         {/* Mesh gradients at 10% opacity */}
         <div 
           className="absolute inset-0 opacity-40 mix-blend-screen"
@@ -187,137 +199,7 @@ export default function Home() {
         />
       </div>
 
-      {/* Floating Glassmorphic Header (Navbar) */}
-      <header className="fixed top-4 left-0 right-0 z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pointer-events-none">
-        <motion.div 
-          initial={{ y: -60, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
-          className="w-full bg-[#040406]/50 backdrop-blur-xl border border-white/[0.08] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] pointer-events-auto"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              {/* Logo */}
-              <div className="flex items-center space-x-3 group cursor-pointer">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 via-blue-500 to-indigo-600 flex items-center justify-center text-black shadow-lg shadow-cyan-500/20 group-hover:rotate-6 transition-transform duration-300">
-                  <ArrowRightLeft className="w-4.5 h-4.5 text-white" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-extrabold text-base tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
-                    AWP Post Status
-                  </span>
-                  <span className="text-[9px] text-cyan-400 font-mono tracking-wider -mt-1 font-bold">WORKFLOW ENGINE</span>
-                </div>
-              </div>
 
-              {/* Nav links (Desktop) */}
-              <nav className="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
-                <a href="#" className="hover:text-white transition-colors duration-200 py-2 relative group">
-                  Home
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-200 group-hover:w-full" />
-                </a>
-                <a href="#video" className="hover:text-white transition-colors duration-200 py-2 relative group">
-                  Product Video
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-200 group-hover:w-full" />
-                </a>
-                <a href="#features" className="hover:text-white transition-colors duration-200 py-2 relative group">
-                  All Features
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-200 group-hover:w-full" />
-                </a>
-                <a href="#playground" className="hover:text-white transition-colors duration-200 py-2 relative group">
-                  Live Simulator
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-200 group-hover:w-full" />
-                </a>
-                <a href="#faq" className="hover:text-white transition-colors duration-200 py-2 relative group">
-                  FAQ
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-200 group-hover:w-full" />
-                </a>
-              </nav>
-
-              {/* CTA Button */}
-              <div className="hidden md:flex items-center">
-                <a
-                  href="#download"
-                  className="relative inline-flex items-center justify-center px-5 py-2 rounded-xl text-sm font-bold text-white bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] group overflow-hidden"
-                >
-                  <Download className="w-4 h-4 mr-2 text-cyan-400 group-hover:translate-y-[-1px] transition-transform duration-200" />
-                  Download Free
-                </a>
-              </div>
-
-              {/* Hamburger Menu (Mobile) */}
-              <div className="md:hidden">
-                <button
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all"
-                  aria-label="Toggle Menu"
-                >
-                  {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile menu */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="overflow-hidden md:hidden border-t border-white/10 bg-[#040406]/95 backdrop-blur-2xl px-6 pt-2 pb-6 space-y-3 rounded-b-2xl"
-              >
-                <a
-                  href="#"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  Home
-                </a>
-                <a
-                  href="#video"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  Product Video
-                </a>
-                <a
-                  href="#features"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  All Features
-                </a>
-                <a
-                  href="#playground"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  Live Simulator
-                </a>
-                <a
-                  href="#faq"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  FAQ
-                </a>
-                <div className="pt-2">
-                  <a
-                    href="#download"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="w-full flex items-center justify-center px-4 py-3 rounded-lg text-base font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-90 transition-opacity"
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Free
-                  </a>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </header>
 
       {/* Hero Section */}
       <motion.section 
@@ -476,97 +358,38 @@ export default function Home() {
           </p>
         </div>
 
-        {/* 6 Premium Neon Hover Feature Cards */}
+        {/* Dynamic Top Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Card 1 */}
-          <div className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.04] hover:border-cyan-500/40 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
-              <PlusCircle className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Custom Post Statuses</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-4">
-              Add unlimited new publishing stages (e.g., "Ready for SEO", "Needs Translation", "Archived") to WordPress with custom colored indicators.
-            </p>
-            <div className="text-xs font-semibold text-cyan-400 flex items-center space-x-1">
-              <span>Learn workflow integration</span>
-              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </div>
+          {featuresData.slice(0, 6).map((feature) => {
+            const IconComponent = feature.iconName && iconMap[feature.iconName] ? iconMap[feature.iconName] : PlusCircle;
+            return (
+              <Link href={`/features/${feature.id}`} key={feature.id}>
+                <div className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.04] hover:border-cyan-500/40 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)] h-full flex flex-col">
+                  <div className="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
+                    <IconComponent className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-4 flex-grow">
+                    {feature.description}
+                  </p>
+                  <div className="text-xs font-semibold text-cyan-400 flex items-center space-x-1 mt-auto">
+                    <span>Learn more</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
 
-          {/* Card 2 */}
-          <div className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.04] hover:border-cyan-500/40 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
-              <ShieldAlert className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Role Restrictions</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-4">
-              Limit status change controls by WordPress user roles. Prevent junior authors or guest writers from accidentally publishing content.
-            </p>
-            <div className="text-xs font-semibold text-cyan-400 flex items-center space-x-1">
-              <span>View authorization options</span>
-              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.04] hover:border-cyan-500/40 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
-              <Zap className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Automated Triggers</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-4">
-              Schedule transitions dynamically. Auto-downgrade event listings, archive old news, or revert categories automatically.
-            </p>
-            <div className="text-xs font-semibold text-cyan-400 flex items-center space-x-1">
-              <span>Explore trigger rules</span>
-              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </div>
-
-          {/* Card 4 */}
-          <div className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.04] hover:border-cyan-500/40 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
-              <Grid className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Bulk Status Switcher</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-4">
-              Batch update statuses for pages, posts, or custom post types inside the native WordPress posts list view with simple actions.
-            </p>
-            <div className="text-xs font-semibold text-cyan-400 flex items-center space-x-1">
-              <span>See bulk edit demo</span>
-              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </div>
-
-          {/* Card 5 */}
-          <div className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.04] hover:border-cyan-500/40 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
-              <Mail className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Smart Email Alerts</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-4">
-              Send personalized email alerts when posts transition to specific statuses. Keep editors and authors dynamically connected.
-            </p>
-            <div className="text-xs font-semibold text-cyan-400 flex items-center space-x-1">
-              <span>View email setups</span>
-              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </div>
-
-          {/* Card 6 */}
-          <div className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.04] hover:border-cyan-500/40 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
-              <Cpu className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Custom Post Types</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-4">
-              Fully compatible with custom post type rules (WooCommerce, portfolios, event boards, reviews, projects) right out of the box.
-            </p>
-            <div className="text-xs font-semibold text-cyan-400 flex items-center space-x-1">
-              <span>View developers API</span>
-              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </div>
+        <div className="flex justify-center mt-12">
+          <Link 
+            href="/features" 
+            className="inline-flex items-center justify-center px-8 py-3 rounded-xl text-base font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] group"
+          >
+            Explore All 37 Features
+            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </section>
 
