@@ -2,11 +2,13 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRightLeft, Download, X, Menu } from "lucide-react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pointer-events-none">
@@ -33,17 +35,21 @@ export default function Header() {
 
             {/* Nav links (Desktop) */}
             <nav className="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
-              <Link href="/" className="hover:text-white transition-colors duration-200 py-2 relative group">
+              <Link href="/" className={`hover:text-white transition-colors duration-200 py-2 relative group ${pathname === '/' ? 'text-white' : ''}`}>
                 Home
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-200 group-hover:w-full" />
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-cyan-400 transition-all duration-200 ${pathname === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
               </Link>
-              <Link href="/features" className="hover:text-white transition-colors duration-200 py-2 relative group">
+              <Link href="/features" className={`hover:text-white transition-colors duration-200 py-2 relative group ${pathname === '/features' ? 'text-white' : ''}`}>
                 All Features
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-200 group-hover:w-full" />
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-cyan-400 transition-all duration-200 ${pathname === '/features' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
               </Link>
-              <Link href="/resources" className="hover:text-white transition-colors duration-200 py-2 relative group">
+              <Link href="/resources" className={`hover:text-white transition-colors duration-200 py-2 relative group ${pathname === '/resources' ? 'text-white' : ''}`}>
                 Resources
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-200 group-hover:w-full" />
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-cyan-400 transition-all duration-200 ${pathname === '/resources' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+              </Link>
+              <Link href="/contact" className={`hover:text-white transition-colors duration-200 py-2 relative group ${pathname === '/contact' ? 'text-white' : ''}`}>
+                Contact
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-cyan-400 transition-all duration-200 ${pathname === '/contact' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
               </Link>
             </nav>
 
@@ -84,23 +90,30 @@ export default function Header() {
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                className={`block px-3 py-2 rounded-lg text-base font-medium transition-colors ${pathname === '/' ? 'text-white bg-white/10' : 'text-slate-300 hover:text-white hover:bg-white/5'}`}
               >
                 Home
               </Link>
               <Link
                 href="/features"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                className={`block px-3 py-2 rounded-lg text-base font-medium transition-colors ${pathname === '/features' ? 'text-white bg-white/10' : 'text-slate-300 hover:text-white hover:bg-white/5'}`}
               >
                 All Features
               </Link>
               <Link
                 href="/resources"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                className={`block px-3 py-2 rounded-lg text-base font-medium transition-colors ${pathname === '/resources' ? 'text-white bg-white/10' : 'text-slate-300 hover:text-white hover:bg-white/5'}`}
               >
                 Resources
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block px-3 py-2 rounded-lg text-base font-medium transition-colors ${pathname === '/contact' ? 'text-white bg-white/10' : 'text-slate-300 hover:text-white hover:bg-white/5'}`}
+              >
+                Contact
               </Link>
               <div className="pt-2">
                 <Link

@@ -257,6 +257,21 @@ export default function Home() {
           </a>
         </motion.div>
 
+        {/* Hero Trust Factor */}
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-col items-center justify-center pt-8 space-y-2"
+        >
+          <div className="flex items-center space-x-2 text-sm text-slate-300 font-medium bg-black/40 px-5 py-2.5 rounded-full border border-white/10 backdrop-blur-md shadow-xl">
+            <div className="flex space-x-1">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+              ))}
+            </div>
+            <span className="pl-1">Trusted by <span className="text-white font-bold">10,000+</span> WordPress users</span>
+          </div>
+        </motion.div>
+
         {/* Looping Video Showcase (Centerpiece) */}
         <motion.div 
           variants={fadeScaleVariants}
@@ -271,7 +286,7 @@ export default function Home() {
             animate={{
               boxShadow: [
                 "inset 0 0 20px rgba(255, 255, 255, 0.03), 0 0 25px rgba(6, 182, 212, 0.12), 0 0 50px rgba(99, 102, 241, 0.08)",
-                "inset 0 0 20px rgba(255, 255, 255, 0.03), 0 0 38px rgba(6, 182, 212, 0.22), 0 0 65px rgba(99, 102, 241, 0.18)",
+                "inset 0 0 20px rgba(255, 255, 255, 0.05), 0 0 35px rgba(6, 182, 212, 0.2), 0 0 60px rgba(99, 102, 241, 0.12)",
                 "inset 0 0 20px rgba(255, 255, 255, 0.03), 0 0 25px rgba(6, 182, 212, 0.12), 0 0 50px rgba(99, 102, 241, 0.08)"
               ]
             }}
@@ -282,67 +297,129 @@ export default function Home() {
             }}
             className="relative rounded-2xl border-[0.5px] border-white/20 bg-[#07070a]/45 backdrop-blur-xl p-1.5 shadow-2xl overflow-hidden"
           >
-            {/* Top Dot Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06] bg-black/40">
-              <div className="flex space-x-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-              </div>
-              <div className="px-6 py-0.5 rounded bg-white/[0.03] text-[10px] text-slate-400 font-mono tracking-wider">
-                awp-post-status-switcher.mp4
-              </div>
-              <div className="w-8 h-2" />
-            </div>
-
             {/* Video Container */}
-            <div className="relative aspect-video w-full rounded-b-xl overflow-hidden bg-slate-950">
+            <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-slate-950">
               <video 
                 autoPlay 
                 loop 
                 muted 
                 playsInline 
-                className="w-full h-full object-cover rounded-b-xl" 
+                className="w-full h-full object-cover" 
                 src="https://www.w3schools.com/html/mov_bbb.mp4"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#040406]/60 via-transparent to-transparent pointer-events-none" />
-              
-              {/* Play Badge overlay (cosmetic) */}
-              <div className="absolute bottom-4 right-4 flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-black/80 backdrop-blur border border-white/10 text-xs font-semibold text-cyan-400">
-                <Play className="w-3.5 h-3.5 fill-cyan-400" />
-                <span>Feature Showcase Loop</span>
-              </div>
             </div>
           </motion.div>
         </motion.div>
       </motion.section>
 
       {/* Ecosystem/Compatibility Marquee Section */}
-      <section className="bg-black/30 border-y border-white/[0.08] py-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 mb-4 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-slate-500">
-            Plugged Into Your Favorite WordPress Ecosystem
-          </p>
+      <section className="bg-gradient-to-b from-black/40 to-[#030305] border-y border-white/[0.08] py-12 overflow-hidden relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.05)_0%,transparent_70%)] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 mb-10 text-center relative z-10">
+          <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-slate-400 via-white to-slate-400">
+            Seamlessly Integrates With Your Stack
+          </h2>
         </div>
         
         {/* Infinite scrolling marquee */}
         <div className="relative w-full flex overflow-x-hidden">
-          <div className="animate-marquee whitespace-nowrap flex items-center space-x-16 text-slate-400 font-semibold text-base">
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>Gutenberg Editor</span></span>
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>Elementor Builder</span></span>
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>WooCommerce Products</span></span>
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>Advanced Custom Fields (ACF)</span></span>
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>Divi Builder</span></span>
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>WPBakery Builder</span></span>
-            
-            {/* Repeated set for infinite look */}
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>Gutenberg Editor</span></span>
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>Elementor Builder</span></span>
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>WooCommerce Products</span></span>
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>Advanced Custom Fields (ACF)</span></span>
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>Divi Builder</span></span>
-            <span className="flex items-center space-x-2"><span className="text-cyan-400">⚡</span> <span>WPBakery Builder</span></span>
+          <div className="animate-marquee whitespace-nowrap flex items-center space-x-12 text-slate-400 font-bold text-lg">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="flex items-center space-x-12 ml-12">
+                <div className="flex items-center space-x-3 hover:text-white transition-colors duration-300">
+                  <svg className="w-8 h-8 text-[#E64980]" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.372 0 0 5.372 0 12c0 6.626 5.372 12 12 12s12-5.372 12-12c0-6.626-5.372-12-12-12ZM9 17H7V7H9Zm8 0H11V15h6Zm0-4H11V11h6Zm0-4H11V7h6Z"/></svg>
+                  <span>Elementor</span>
+                </div>
+                <div className="flex items-center space-x-3 hover:text-white transition-colors duration-300">
+                  <svg className="w-8 h-8 text-[#96588a]" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M.754 9.58a.754.754 0 00-.754.758v2.525c0 .42.339.758.758.758h3.135l1.431.799-.326-.799h2.373a.757.757 0 00.758-.758v-2.525a.757.757 0 00-.758-.758H.754zm2.709.445h.03c.065.001.124.023.179.067a.26.26 0 01.103.19.29.29 0 01-.033.16c-.13.239-.236.64-.322 1.199-.083.541-.114.965-.094 1.267a.392.392 0 01-.039.219.213.213 0 01-.176.12c-.086.006-.177-.034-.263-.124-.31-.316-.555-.788-.735-1.416-.216.425-.375.744-.478.957-.196.376-.363.568-.502.578-.09.007-.166-.069-.233-.228-.17-.436-.352-1.277-.548-2.524a.297.297 0 01.054-.222c.047-.064.116-.095.21-.102.169-.013.265.065.288.238.103.695.217 1.284.336 1.766l.727-1.387c.066-.126.15-.192.25-.199.146-.01.237.083.273.28.083.441.188.817.315 1.136.086-.844.233-1.453.44-1.828a.255.255 0 01.218-.147zm1.293.36c.056 0 .116.006.18.02.232.05.411.177.53.386.107.18.161.395.161.654 0 .343-.087.654-.26.94-.2.332-.459.5-.781.5a.88.88 0 01-.18-.022.763.763 0 01-.531-.384 1.287 1.287 0 01-.158-.659c0-.342.085-.655.258-.937.202-.333.462-.498.78-.498zm2.084 0c.056 0 .116.006.18.02.236.05.411.177.53.386.107.18.16.395.16.654 0 .343-.086.654-.259.94-.2.332-.459.5-.781.5a.88.88 0 01-.18-.022.763.763 0 01-.531-.384 1.287 1.287 0 01-.16-.659c0-.342.087-.655.26-.937.202-.333.462-.498.78-.498zm4.437.047c-.305 0-.546.102-.718.304-.173.203-.256.49-.256.856 0 .395.086.697.256.906.17.21.418.316.744.316.315 0 .559-.107.728-.316.17-.21.256-.504.256-.883s-.087-.673-.26-.879c-.176-.202-.424-.304-.75-.304zm-1.466.002a1.13 1.13 0 00-.84.326c-.223.22-.332.499-.332.838 0 .362.108.658.328.88.22.223.505.336.861.336.103 0 .22-.016.346-.052v-.54c-.117.034-.216.051-.303.051a.545.545 0 01-.422-.177c-.106-.12-.16-.278-.16-.48 0-.19.053-.348.156-.468a.498.498 0 01.397-.181c.103 0 .212.015.332.049v-.537a1.394 1.394 0 00-.363-.045zm12.414 0a1.135 1.135 0 00-.84.326c-.223.22-.332.499-.332.838 0 .362.108.658.328.88.22.223.506.336.861.336.103 0 .22-.016.346-.052v-.54c-.116.034-.216.051-.303.051a.545.545 0 01-.422-.177c-.106-.12-.16-.278-.16-.48 0-.19.053-.348.156-.468a.498.498 0 01.397-.181c.103 0 .212.015.332.049v-.537a1.394 1.394 0 00-.363-.045zm-9.598.06l-.29 2.264h.579l.156-1.559.395 1.559h.412l.379-1.555.164 1.555h.603l-.304-2.264h-.791l-.12.508c-.03.13-.06.264-.087.4l-.067.352a29.97 29.97 0 00-.258-1.26h-.771zm2.768 0l-.29 2.264h.579l.156-1.559.396 1.559h.412l.375-1.555.165 1.555h.603l-.305-2.264h-.789l-.119.508c-.03.13-.06.264-.086.4l-.066.352c-.063-.352-.15-.771-.26-1.26h-.771zm3.988 0v2.264h.611v-1.031h.012l.494 1.03h.645l-.489-1.019a.61.61 0 00.37-.552.598.598 0 00-.25-.506c-.167-.123-.394-.186-.68-.186h-.713zm3.377 0v2.264H24v-.483h-.63v-.414h.54v-.468h-.54v-.416h.626v-.483H22.76zm-4.793.004v2.264h1.24v-.483h-.627v-.416h.541v-.468h-.54v-.415h.622v-.482h-1.236zm2.025.432c.146.003.25.025.313.072.063.046.091.12.091.227 0 .156-.135.236-.404.24v-.54zm-15.22.011c-.104 0-.205.069-.301.211a1.078 1.078 0 00-.2.639c0 .096.02.2.06.303.049.13.117.198.196.215.083.016.173-.02.27-.106.123-.11.205-.273.252-.492.016-.077.023-.16.023-.246 0-.097-.02-.2-.06-.303-.05-.13-.116-.198-.196-.215a.246.246 0 00-.045-.006zm2.083 0c-.103 0-.204.069-.3.211a1.078 1.078 0 00-.2.639c0 .096.02.2.06.303.049.13.117.198.196.215.083.016.173-.02.27-.106.123-.11.205-.273.252-.492.013-.077.023-.16.023-.246 0-.097-.02-.2-.06-.303-.05-.13-.116-.198-.196-.215a.246.246 0 00-.045-.006zm4.428.006c.233 0 .354.218.354.66-.004.273-.038.46-.098.553a.293.293 0 01-.262.139.266.266 0 01-.242-.139c-.056-.093-.084-.28-.084-.562 0-.436.11-.65.332-.65Z"/></svg>
+                  <span>WooCommerce</span>
+                </div>
+                <div className="flex items-center space-x-3 hover:text-white transition-colors duration-300">
+                  <svg className="w-8 h-8" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path fill="#00E3A0" d="M128 0C57.3 0 0 57.3 0 128s57.3 128 128 128 128-57.3 128-128S198.7 0 128 0z"/><path fill="#FFF" d="M185.3 162.7v-69.4h-38v21.1h15.2v27.2h-15.2v21.1h38zm-54.3-69.4h-24.1c-14.7 0-22.8 8.1-22.8 22.8v23.8c0 14.7 8.1 22.8 22.8 22.8h24.1v-21.1h-16.6c-4.4 0-6.1-1.7-6.1-6.1v-10.4h22.7v-10.8h-22.7v-10.4c0-4.4 1.7-6.1 6.1-6.1h16.6v-21.1zm-48.4 69.4L61.5 93.3H40l-21.1 69.4h20.1l5.4-19.4h15.4l5.4 19.4h20.4zm-30.8-37.1l-4.1-15.2-4.1 15.2h8.2z"/></svg>
+                  <span>ACF</span>
+                </div>
+                <div className="flex items-center space-x-3 hover:text-white transition-colors duration-300">
+                  <svg className="w-8 h-8" viewBox="0 0 142 165" xmlns="http://www.w3.org/2000/svg"><path fill="#0073FF" d="M71.21.32L0 41.36v82l71.21 41.04 71.22-41.04v-82L71.21.32zm0 82.08L24.58 55.43l46.63-26.86 46.64 26.86-46.64 26.97zm0 16.32l46.64-26.98v53.7L71.21 152.3V98.72zm-16.14-9.33L8.44 62.43v53.7l46.63 26.86V89.39z"/></svg>
+                  <span>Crocoblock</span>
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Industry-specific Categories Section */}
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-xs font-bold text-cyan-400 uppercase tracking-widest"
+          >
+            Use Cases
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl sm:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-blue-500 bg-[length:200%_auto] animate-text-gradient"
+          >
+            Tailored For Every Industry
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { id: "general", icon: "📝", title: "General & Blog", subtitle: "9 Workflow States" },
+            { id: "woocommerce", icon: "🛒", title: "WooCommerce Store", subtitle: "5 Workflow States" },
+            { id: "real-estate", icon: "🏡", title: "Real Estate Portals", subtitle: "5 Workflow States" },
+            { id: "job-portal", icon: "💼", title: "Job Portals / Careers", subtitle: "6 Workflow States" },
+            { id: "directory", icon: "📍", title: "Business Directories", subtitle: "3 Workflow States" },
+            { id: "event", icon: "📅", title: "Events & Calendars", subtitle: "2 Workflow States" },
+            { id: "education", icon: "🎓", title: "Education & Courses", subtitle: "2 Workflow States" },
+            { id: "automotive", icon: "🚗", title: "Automotive & Rentals", subtitle: "2 Workflow States" },
+            { id: "restaurant", icon: "🍔", title: "Restaurants & Menus", subtitle: "3 Workflow States" },
+          ].map((category, index) => (
+            <Link href={`/categories/${category.id}`} key={category.id}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.05,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                className={`group flex items-center justify-between p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.02] cursor-pointer ${
+                  index === 0 
+                    ? "bg-[#040406] border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.1)]" 
+                    : "bg-[#07070a]/60 border-white/5 hover:bg-[#0a0a0e] hover:border-cyan-500/30"
+                }`}
+              >
+                <div className="flex items-center space-x-4">
+                  <div className="text-3xl transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    {category.icon}
+                  </div>
+                  <div>
+                    <h3 className={`font-bold text-base transition-colors duration-300 ${index === 0 ? "text-cyan-400" : "text-white group-hover:text-cyan-400"}`}>
+                      {category.title}
+                    </h3>
+                    <p className="text-slate-500 text-xs font-medium mt-0.5">
+                      {category.subtitle}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center text-cyan-400 text-sm font-bold opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                  View <ArrowRight className="w-4 h-4 ml-1" />
+                </div>
+              </motion.div>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -350,7 +427,7 @@ export default function Home() {
       <section id="features" className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-xs font-bold text-cyan-400 uppercase tracking-widest">Core Capabilities</h2>
-          <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+          <p className="text-3xl sm:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-blue-500 bg-[length:200%_auto] animate-text-gradient">
             Workflow Engines Crafted For Growth
           </p>
           <p className="text-slate-400 text-base">
@@ -403,7 +480,7 @@ export default function Home() {
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20 text-xs font-bold text-cyan-400 tracking-wide">
                 <span>WIDGET SIMULATOR</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-blue-500 bg-[length:200%_auto] animate-text-gradient">
                 Try the Live Status Switcher Playground
               </h2>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
@@ -512,11 +589,83 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials / Trust Section */}
+      <section id="reviews" className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 border-t border-white/[0.08]">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <h2 className="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center justify-center gap-2">
+            <Star className="w-4 h-4 fill-amber-400" /> 
+            Loved by the Community
+          </h2>
+          <p className="text-3xl sm:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-blue-500 bg-[length:200%_auto] animate-text-gradient">
+            See What Our Users Are Saying
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Testimonial 1 */}
+          <div className="p-6 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent hover:border-white/20 transition-colors flex flex-col">
+            <div className="flex space-x-1 mb-4">
+              {[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+            </div>
+            <p className="text-slate-300 text-sm leading-relaxed mb-6">
+              "This plugin completely changed how our editorial team works. We no longer have accidental publishes from guest authors. The status restriction feature is exactly what we needed!"
+            </p>
+            <div className="flex items-center space-x-3 mt-auto">
+              <div className="w-10 h-10 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">
+                JD
+              </div>
+              <div>
+                <span className="block text-sm font-bold text-white">John Doe</span>
+                <span className="block text-xs text-slate-500">Managing Editor</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonial 2 */}
+          <div className="p-6 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent hover:border-white/20 transition-colors flex flex-col">
+            <div className="flex space-x-1 mb-4">
+              {[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+            </div>
+            <p className="text-slate-300 text-sm leading-relaxed mb-6">
+              "The custom email notifications are a lifesaver. Now my copywriters know exactly when a post is ready for review without me having to slack them every time."
+            </p>
+            <div className="flex items-center space-x-3 mt-auto">
+              <div className="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+                SA
+              </div>
+              <div>
+                <span className="block text-sm font-bold text-white">Sarah Anderson</span>
+                <span className="block text-xs text-slate-500">Content Strategist</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonial 3 */}
+          <div className="p-6 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent hover:border-white/20 transition-colors flex flex-col">
+            <div className="flex space-x-1 mb-4">
+              {[1, 2, 3, 4, 5].map((i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+            </div>
+            <p className="text-slate-300 text-sm leading-relaxed mb-6">
+              "I run a WooCommerce site with multiple store managers. AWP Post Status Switcher gave me the exact workflow control I was looking for. Brilliant and lightweight."
+            </p>
+            <div className="flex items-center space-x-3 mt-auto">
+              <div className="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                MK
+              </div>
+              <div>
+                <span className="block text-sm font-bold text-white">Mike K.</span>
+                <span className="block text-xs text-slate-500">Store Owner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Accordion FAQ Section */}
       <section id="faq" className="py-20 md:py-28 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center space-y-4">
           <h2 className="text-xs font-bold text-cyan-400 uppercase tracking-widest">Common Inquiries</h2>
-          <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+          <p className="text-3xl sm:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-blue-500 bg-[length:200%_auto] animate-text-gradient">
             Frequently Asked Questions
           </p>
         </div>

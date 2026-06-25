@@ -26,11 +26,17 @@ const config: Config = {
           "0%, 100%": { opacity: "0.5", filter: "blur(40px)" },
           "50%": { opacity: "0.8", filter: "blur(60px)" },
         },
+        gradient: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
       },
       animation: {
         marquee: "marquee 25s linear infinite",
         float: "float 6s ease-in-out infinite",
         "pulse-glow": "pulseGlow 8s ease-in-out infinite",
+        "text-gradient": "gradient 6s ease infinite",
       },
     },
   },
