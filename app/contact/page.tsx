@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, MessageSquare, Send, CheckCircle2, ChevronDown } from "lucide-react";
+import { Mail, MapPin, Phone, MessageSquare, Send, CheckCircle2, ChevronDown, RefreshCw } from "lucide-react";
 
 const INQUIRY_CATEGORIES = [
   { id: "Technical Help", label: "Technical Help", icon: "🛠️", border: "border-blue-500/50", activeBg: "bg-blue-500/10" },

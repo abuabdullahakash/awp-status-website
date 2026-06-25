@@ -3,7 +3,6 @@
 import React, { use, useRef, useState } from "react";
 import { notFound } from "next/navigation";
 import { getCategoryBySlug, getFeaturesByCategory } from "@/data/categories";
-import Header from "@/components/Header";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Play, Pause } from "lucide-react";
 import * as LucideIcons from "lucide-react";
@@ -24,8 +23,6 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
 
   return (
     <div className="min-h-screen bg-[#040406] text-slate-300 font-sans selection:bg-cyan-500/30 selection:text-cyan-50">
-      <Header />
-
       <main className="pt-24 pb-20">
         {/* Dynamic Hero Section */}
         <section className="relative overflow-hidden py-16 md:py-24 border-b border-white/5">

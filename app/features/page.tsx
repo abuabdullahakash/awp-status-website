@@ -87,12 +87,48 @@ export default function FeaturesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent text-slate-100 font-sans pt-24 pb-16">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+    <div className="min-h-screen bg-[#040406] text-slate-100 font-sans pt-24 pb-16 relative">
+      {/* Global Background Grid */}
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_100%)] opacity-70 pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
         
         {/* Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20 pt-8">
-          <div className="space-y-6">
+        <div className="relative pt-12 pb-24 mb-16 border-b border-white/5">
+          {/* Animated Background Icons (GSAP Style) */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+            <motion.div
+              animate={{ y: [0, -30, 0], x: [0, 20, 0], rotate: [0, 45, 0] }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              className="absolute top-10 left-[10%] text-cyan-500/10"
+            >
+              <Zap className="w-32 h-32" />
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, 40, 0], x: [0, -30, 0], rotate: [0, -45, 0] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute bottom-10 right-[15%] text-purple-500/10"
+            >
+              <Lock className="w-40 h-40" />
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, -20, 0], scale: [1, 1.2, 1] }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-20 right-[40%] text-blue-500/10"
+            >
+              <CheckCircle className="w-20 h-20" />
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, 30, 0], rotate: [0, 90, 0] }}
+              transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+              className="absolute top-40 left-[40%] text-emerald-500/10"
+            >
+              <Box className="w-24 h-24" />
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
               Explore All <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
@@ -112,12 +148,32 @@ export default function FeaturesPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.05 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className={`absolute inset-0 bg-gradient-to-br ${slideShowData[currentSlide].bg} flex flex-col items-center justify-center p-8 text-center`}
               >
-                {slideShowData[currentSlide].icon}
-                <h3 className="text-2xl font-bold text-white mb-2">{slideShowData[currentSlide].title}</h3>
-                <p className="text-slate-300">{slideShowData[currentSlide].subtitle}</p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {slideShowData[currentSlide].icon}
+                </motion.div>
+                <motion.h3 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-2xl font-bold text-white mb-2"
+                >
+                  {slideShowData[currentSlide].title}
+                </motion.h3>
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-slate-300"
+                >
+                  {slideShowData[currentSlide].subtitle}
+                </motion.p>
               </motion.div>
             </AnimatePresence>
             
@@ -130,6 +186,7 @@ export default function FeaturesPage() {
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentSlide ? "bg-cyan-400 w-6" : "bg-white/30 hover:bg-white/50"}`}
                 />
               ))}
+            </div>
             </div>
           </div>
         </div>
@@ -222,16 +279,24 @@ export default function FeaturesPage() {
         {/* Features Grid */}
         {visibleFeatures.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-            <AnimatePresence>
+            <AnimatePresence mode="popLayout">
               {visibleFeatures.map((feature, index) => {
                 const IconComponent = feature.iconName && iconMap[feature.iconName] ? iconMap[feature.iconName] : Box;
                 return (
                   <motion.div
+                    layout
                     key={feature.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 200, 
+                      damping: 20, 
+                      mass: 0.8,
+                      opacity: { duration: 0.3 },
+                      delay: index * 0.04 
+                    }}
                   >
                     <Link href={`/features/${feature.id}`} className="block h-full">
                       <div className="bg-[#0d0f16] border border-white/[0.05] hover:border-cyan-500/50 hover:bg-[#131722] hover:shadow-[0_0_20px_rgba(6,182,212,0.1)] transition-all duration-300 rounded-2xl p-6 h-full flex flex-col group cursor-pointer relative overflow-hidden">
